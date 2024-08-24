@@ -1,0 +1,14 @@
+﻿[
+    {
+        "mod_name": "ohd-server",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "ohd-client",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "ohd",
+        "mod_enabled": true
+    }
+]

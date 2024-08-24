@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Ignore all other mods
+/*/
+
+# Unignore OHD mods
+!/ohd/
+!/ohd-client/
+!/ohd-server/
