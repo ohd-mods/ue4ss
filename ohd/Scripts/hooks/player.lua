@@ -1,5 +1,6 @@
 local Utils = require("utils")
 local UEHelpers = require("UEHelpers")
+local CommandHelper = require("commands")
 require("extensions")
 
 local PlayerHooks = {
@@ -50,8 +51,10 @@ end
 PlayerHooks.Methods.onServerAdmin = function (self, Cmd, Player)
     local Cmd = Cmd:get():ToString()
     local CommandParts = Cmd:split(" ")
-    Utils.Log("ServerAdmin: %s", dumpTable(CommandParts))
-    Utils.Dump(self, "ServerAdmin.self")
+    Utils.Log("ServerAdmin Cmd: %s", dumpTable(Cmd))
+    Utils.Log("ServerAdmin CommandParts: %s", dumpTable(CommandParts))
+    -- Utils.Dump(self, "ServerAdmin.self")
+    CommandHelper.Process(Cmd, nil, nil, CommandParts)
 end
 
 
@@ -118,7 +121,7 @@ PlayerHooks.Methods.onPlayerWounded = function (self, Player, DamageAmount, Dama
     local instigatorState = Utils.GetPlayerState(instigatedBy)
     local damageTypeStr = splitString(damageType:GetFullName()," ")[1]
     local damageCauserStr = splitString(damageCauser:GetFullName()," ")[1]
-    Utils.Log("%s was wounded by %.2fHP (%s) from %s using %s",
+    Utils.Log("%s was wounded by %.1fHP (%s) from %s using %s",
         Utils.GetPlayerString(playerState), damageAmount, damageTypeStr, Utils.GetPlayerString(instigatorState), damageCauserStr
     )
 end

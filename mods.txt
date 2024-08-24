@@ -1,3 +1,18 @@
+AAAAAA : 1
+CheatManagerEnablerMod : 1
+ActorDumperMod : 0
+ConsoleEnablerMod : 0
+ConsoleCommandsMod : 1
+SplitScreenMod : 0
+LineTraceMod : 0
+BPModLoaderMod : 0
+BPML_GenericFunctions : 0
+jsbLuaProfilerMod : 0
+bluscream : 1
 ohd : 1
-ohd-server : 1
-ohd-client : 1
+
+
+
+
+; Built-in keybinds, do not move up!
+Keybinds : 1

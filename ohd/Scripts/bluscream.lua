@@ -1,5 +1,6 @@
 local Utils = require("utils")
 local UEHelpers = require("UEHelpers")
+local CommandHelper = require("commands")
 require("extensions")
 
 function bluscream(FullCommand, Parameters, Ar)
@@ -22,13 +23,13 @@ function bluscream(FullCommand, Parameters, Ar)
 end
 
 RegisterProcessConsoleExecPreHook(function(self, Cmd, CommandParts, Ar, Executor)
-    local src = Executor:get()
-    local CommandParts = CommandParts or Cmd:split(" ")
-    local cacheKey = "ProcessConsoleExecPre"
-    local cacheItem = {Cmd, src}
-    -- if Utils.Cache[cacheKey] then return end
-    Utils.Cache[cacheKey] = cacheItem
     local ctx = self:get()
+    local CommandParts = CommandParts or Cmd:split(" ")
+    local src = Executor:get()
+    local cacheKey = "ProcessConsoleExecPre"
+    local cacheItem = {ctx, Cmd, CommandParts, Ar, src}
+    if Utils.Cache[cacheKey] then return end
+    Utils.Cache[cacheKey] = cacheItem
     -- Utils.LogDebug(string.format("[ProcessConsoleExecPre] self: \"%s\"", ctx))
     -- Utils.LogDebug(string.format("[ProcessConsoleExecPre] self: \"%s\"", ctx:GetFullName()))
     Utils.Log("[ProcessConsoleExecPre]: Cmd: \"%s\"", Cmd)
@@ -41,17 +42,7 @@ RegisterProcessConsoleExecPreHook(function(self, Cmd, CommandParts, Ar, Executor
     -- for i, part in ipairs(src:Reflection()) do
     --     Utils.LogDebug(string.format("[ProcessConsoleExecPre]: Executor:Reflection[%i]: \"%s\"", i, part))
     -- end
-    if Cmd == "bluscream" then
-        bluscream()
-        return true
-    elseif string.starts(Cmd, "sayChat ") then
-        local msg = table.join(CommandParts, " ")
-        Utils.SayChat(msg, "CONSOLE")
-        return true
-    elseif Cmd == "ue4ss" then
-        Utils.SayChat(Utils.GetUnrealVersion(true), "CONSOLE")
-        return "true"
-    end
+    return CommandHelper.Process(Cmd, nil, nil, parts)
 end)
 
 Utils.RegisterHookOnce("/Script/Engine.PlayerController:ClientRestart", function (self) 
@@ -69,9 +60,9 @@ end)
 Utils.RegisterHookOnce("/Script/HDMain.HDTextChatWidgetBase:DisplayChatMessage", function (self) 
     Utils.Log("DisplayChatMessage")
 end)
-Utils.RegisterHookOnce("/HDCore/UI/HUD/TextChat/WBP_HUDElement_TextChat_OutputListing.WBP_HUDElement_TextChat_OutputListing_C:ExecuteUbergraph_WBP_HUDElement_TextChat_OutputListing", function (self) 
-    Utils.Log("WBP_HUDElement_TextChat_OutputListing_C")
-end)
+-- Utils.RegisterHookOnce("/HDCore/UI/HUD/TextChat/WBP_HUDElement_TextChat_OutputListing.WBP_HUDElement_TextChat_OutputListing_C:ExecuteUbergraph_WBP_HUDElement_TextChat_OutputListing", function (self) 
+--     Utils.Log("WBP_HUDElement_TextChat_OutputListing_C")
+-- end)
 Utils.RegisterHookOnce("/HDCore/UI/HUD/TextChat/WBP_HUDElement_TextChat.WBP_HUDElement_TextChat_C:DisplayChatMessage", function (self) 
     Utils.Log("DisplayChatMessage2")
 end)
@@ -160,4 +151,4 @@ RegisterCustomEvent("bluscream", bluscream)
 -- RegisterConsoleCommandGlobalHandler("bluscream", bluscream)
 -- Utils.RegisterCommand("blu", bluscream)
 -- RegisterConsoleCommandGlobalHandler("blu", bluscream)
-RegisterKeyBind(Key.F3, bluscream)
+-- RegisterKeyBind(Key.F3, bluscream)

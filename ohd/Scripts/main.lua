@@ -9,5 +9,4 @@ local PlayerHooks = require("hooks/player")
 PlayerHooks.Init(nil)
 
 require("bluscream")
-require("location")
 Utils.LogDebug("END")

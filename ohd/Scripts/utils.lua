@@ -211,7 +211,7 @@ function Utils.GetHDGameInstance()
     -- return UBPFL_HDCore_C:GetHDGameInstance(UEHelpers.GetWorldContextObject(), HDGI)
 end
 function Utils.GetVectorString(v)
-    return string.format("{X%.3f,Y%.3f,Z%.3f}", v.X, v.Y, v.Z)
+    return string.format("{X:%.3f,Y:%.3f,Z:%.3f}", v.X, v.Y, v.Z)
 end
 function Utils.GetPlayerString(state)
     local typeStr = state.IsABot and "Bot" or "Player"
@@ -244,6 +244,14 @@ function Utils.GetTeamName(teamNum)
     if teamNum == 0 then return string.format("OPFOR (%i)", teamNum) end
     if teamNum == 1 then return string.format("BLUFOR (%i)", teamNum) end
     return string.format("Unknown (%i)", teamNum)
+end
+function Utils.SetServerName(name)
+    local server = FindFirstOf("ADFGameSession")
+    if server == nil or not server:IsValid() then server = FindFirstOf("DFGameSession") end
+    if server == nil or not server:IsValid() then return Utils.Log("server isn't valid") end
+    Utils.Log("Old Server Name: %s", server.ServerName:ToString())
+    server.ServerName = name
+    Utils.Log("New Server Name: %s", server.ServerName:ToString())
 end
 function Utils.RemoveAllBots()
     local gameMode = FindFirstOf('ADFBaseGameMode')

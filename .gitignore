@@ -404,3 +404,6 @@ FodyWeavers.xsd
 !/ohd/
 !/ohd-client/
 !/ohd-server/
+mods.json
+enabled.txt
+mods.txt

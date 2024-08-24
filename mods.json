@@ -1,14 +1,54 @@
 ﻿[
     {
-        "mod_name": "ohd-server",
+        "mod_name": "AAAAAA",
         "mod_enabled": true
     },
     {
-        "mod_name": "ohd-client",
+        "mod_name": "CheatManagerEnablerMod",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "ActorDumperMod",
+        "mod_enabled": false
+    },
+    {
+        "mod_name": "ConsoleCommandsMod",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "SplitScreenMod",
+        "mod_enabled": false
+    },
+    {
+        "mod_name": "LineTraceMod",
+        "mod_enabled": false
+    },
+    {
+        "mod_name": "BPML_GenericFunctions",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "BPModLoaderMod",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "jsbLuaProfilerMod",
+        "mod_enabled": false
+    },
+    {
+        "mod_name": "KismetDebuggerMod",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "bluscream",
         "mod_enabled": true
     },
     {
         "mod_name": "ohd",
+        "mod_enabled": true
+    },
+    {
+        "mod_name": "Keybinds",
         "mod_enabled": true
     }
 ]
