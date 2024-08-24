@@ -397,6 +397,11 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+# Ignore
+mods.json
+enabled.txt
+mods.txt
+
 # Ignore all other mods
 /*/
 
@@ -404,6 +409,3 @@ FodyWeavers.xsd
 !/ohd/
 !/ohd-client/
 !/ohd-server/
-mods.json
-enabled.txt
-mods.txt
