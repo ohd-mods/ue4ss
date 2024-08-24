@@ -151,4 +151,11 @@ RegisterCustomEvent("bluscream", bluscream)
 -- RegisterConsoleCommandGlobalHandler("bluscream", bluscream)
 -- Utils.RegisterCommand("blu", bluscream)
 -- RegisterConsoleCommandGlobalHandler("blu", bluscream)
--- RegisterKeyBind(Key.F3, bluscream)
+RegisterKeyBind(Key.F3, bluscream)
+RegisterKeyBind(Key.F2, function()
+    local casualfieldDevConsole = FindFirstOf("/CasualCQB/Root/Blueprints/BP_Interactive_Device.BP_Interactive_Device_C")
+    if not Utils.isValid(casualfieldDevConsole) then
+        Utils.Dump(casualfieldDevConsole,"casualfieldDevConsole",true)
+    end
+    casualfieldDevConsole:ShowHide()
+end)

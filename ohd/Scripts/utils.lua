@@ -185,19 +185,23 @@ function Utils.GetGameInstance()
     end
     return nil
 end
-function Utils.Dump(var, name)
+function Utils.Dump(var, name, dontGet, getRisky)
+    dontGet = dontGet or false
+    getRisky = getRisky or false
     print((name or "Variable") .. ":\n")
     print(string.format("dumpTable(var): %s\n", dumpTable(var)))
     print(string.format("type(var): %s\n", type(var)))
     print(string.format("var:type(): %s\n", var:type()))
-    local got = var:get()
-    print(string.format("dumpTable(got): %s\n", dumpTable(got)))
-    print(string.format("type(got): %s\n", type(got)))
-    print(string.format("got:type(): %s\n", got:type()))
-    print(string.format("got:GetFullName(): %s\n", got:GetFullName()))
-    print(string.format("got:GetFName(): %s\n", got:GetFName()))
-    print(string.format("got:GetClass(): %s\n", got:GetClass()))
-    return txt
+    if not dontGet then
+        var = var:get()
+        print(string.format("dumpTable(got): %s\n", dumpTable(var)))
+        print(string.format("type(got): %s\n", type(var)))
+        print(string.format("got:type(): %s\n", var:type()))
+    end
+    print(string.format("got:GetFullName(): %s\n", var:GetFullName()))
+    if not getRisky then return end
+    print(string.format("got:GetFName(): %s\n", var:GetFName()))
+    print(string.format("got:GetClass(): %s\n", var:GetClass()))
 end
 function Utils.GetUnrealVersion(withText)
     -- withText = withText or false
