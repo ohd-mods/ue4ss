@@ -126,8 +126,9 @@ function Utils.SayChat(message, name)
     --     DFBasePlayerController:ReceiveNewChatMsg(arg)
     --     -- FPlayerChatMsg
     --     -- APlayerState
+    else
+        Utils.Exec(string.format("say [CHAT][%s] %s", name, message))
     end
-    Utils.Exec(string.format("say [CHAT][%s] %s", name, message))
 end
 
 function Utils.isValid(item)
@@ -221,6 +222,9 @@ function Utils.GetPlayerString(state)
     local idleStr = state.IsInactive and "AFK|" or ""
     return string.format("[%s%s%s%s] %s \"%s\" (#%i/%s) with %ims since %u",
         plStr, sStr, osStr, idleStr, typeStr, state.Name, state.PlayerId, state.SteamId64, state.Ping, state.StartTime)
+end
+function Utils.GetPlayerStr(state)
+    return string.format("\"%s\" (%i)", state.Name, state.PlayerId)
 end
 function Utils.GetPlayerState(player)
     local state = player.PlayerState

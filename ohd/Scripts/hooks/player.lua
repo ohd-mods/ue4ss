@@ -67,6 +67,7 @@ PlayerHooks.Methods.onPlayerJoined = function (self, NewPlayer) -- PlayerPostLog
     -- local ctx = self:get()
     local state = Utils.GetPlayerState(player)
     Utils.Log("%s joined the server", Utils.GetPlayerString(state))
+    Utils.SayChat(string.format("%s joined [%ims]", Utils.GetPlayerStr(state), state.Ping))
 end
 
 PlayerHooks.Methods.onPlayerJoinedTeam = function (self, JoiningPlayer, TeamNum) 
@@ -104,6 +105,7 @@ PlayerHooks.Methods.onPlayerKilled = function (self, Killer, Player)
     local playerState = Utils.GetPlayerState(player)
     local killerState = Utils.GetPlayerState(killer)
     Utils.Log("%s killed by %s", Utils.GetPlayerString(playerState), Utils.GetPlayerString(killerState))
+    Utils.SayChat(string.format("%s killed %s", Utils.GetPlayerStr(killerState), Utils.GetPlayerStr(playerState)))
 end
 
 PlayerHooks.Methods.onPlayerWounded = function (self, Player, DamageAmount, DamageType, InstigatedBy, DamageCauser) 
@@ -135,6 +137,7 @@ PlayerHooks.Methods.onPlayerSuicide = function (self, Player)
     -- local ctx = self:get()
     local state = Utils.GetPlayerState(player)
     Utils.Log("%s suicided", Utils.GetPlayerString(state))
+    Utils.SayChat(string.format("%s suicided", Utils.GetPlayerStr(state)))
 end
 PlayerHooks.Methods.onPlayerDied = function (self, Player) 
     local player = Player:get()
@@ -155,6 +158,7 @@ PlayerHooks.Methods.onPlayerPostLogout = function (self, ExitingPlayer)
     PlayerHooks.Cache[cacheKey] = cacheItem
     local state = Utils.GetPlayerState(player)
     Utils.Log("%s left the server", Utils.GetPlayerString(state))
+    Utils.SayChat(string.format("%s left [%ims]", Utils.GetPlayerStr(state), state.Ping))
 end
 
 
